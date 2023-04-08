@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static Long filterByAge (Collection<Person> people, int ageFrom) {
@@ -11,7 +12,7 @@ public class Main {
                 .filter(person -> person.getSex().equals(Sex.MAN))
                 .filter(person -> person.getAge() >= ageFrom && person.getAge() < ageTo + 1)
                 .map(person -> String.valueOf(person.getFamily()))
-                .toList();
+                .collect(Collectors.toList());
     }
     public static Collection<String> filterWorkablePersonByAge (Collection<Person> people, int ageFrom, int ageToMan, int ageToWoman) {
         return people.stream()
@@ -19,7 +20,7 @@ public class Main {
                 .filter(person -> person.getEducation().equals(Education.HIGHER))
                 .map(person -> String.valueOf(person.getFamily()))
                 .sorted(Comparator.naturalOrder())
-                .toList();
+                .collect(Collectors.toList());
     }
     public static void main(String[] args) {
        List<String> names = Arrays.asList("Jack", "Connor", "Harry", "George", "Samuel", "John");
